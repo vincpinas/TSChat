@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+*, *::before, *::after {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(122, 122, 122) rgb(16, 16, 16);
+}
+
+:root {
+    color: rgb(216, 216, 216);
+}
+
+a {
+    text-decoration: none;
+}
+
+body, html {
+    height: 100vh;
+
+}
+
+/* Put this in a seperate body tag since overflowing divs can overlap the scrolling bar when put on the HTML tag. */
+body {
+    overflow-x: hidden;
+    background-color: #1a1a1a;
+}
