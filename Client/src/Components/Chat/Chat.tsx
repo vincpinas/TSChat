@@ -4,7 +4,7 @@ import './Chat.css'
 
 import Sidebar from '../Sidebar/Sidebar'
 
-function Chat() {
+const Chat = () => {
     return (
         <div>
             <Sidebar/>

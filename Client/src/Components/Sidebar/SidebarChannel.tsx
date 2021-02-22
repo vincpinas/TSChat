@@ -6,7 +6,7 @@ interface sidebarChannelProps {
     channelLink: string;
 }
 
-function SidebarChannel(props: sidebarChannelProps) {
+const SidebarChannel = (props: sidebarChannelProps) => {
     return (
         <Link className="sidebarChannel" to={props.channelLink}>
             <div className="channelName">

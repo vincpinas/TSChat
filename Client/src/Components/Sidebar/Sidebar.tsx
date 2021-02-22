@@ -4,7 +4,7 @@ import './Sidebar.css'
 
 import SidebarChannel from './SidebarChannel'
 
-function Sidebar() {
+const Sidebar = () => {
     return (
         <div className="sidebar">
             <SidebarChannel channelName="General" channelLink="#"/>

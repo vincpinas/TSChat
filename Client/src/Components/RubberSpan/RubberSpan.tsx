@@ -10,7 +10,7 @@ interface rubberSpanProps {
 }
 
 
-function RubberSpan(props: rubberSpanProps) {
+const RubberSpan = (props: rubberSpanProps) => {
     let letterArray: string[] = [];
 
     let split = props.letters.split("");
@@ -19,13 +19,13 @@ function RubberSpan(props: rubberSpanProps) {
     });
 
     // Set the animation on hovering over the target
-    function changeAnimation(e: any) {
+    const changeAnimation = (e: any) => {
         e.target.style.animationName = 'rubberBand'
         e.target.style.animationDuration = '1s'
     }
 
     // Remove the animation after a set time to reset it so it can be played again later.
-    function resetAnimation(e: any) {
+    const resetAnimation = (e: any) => {
         setTimeout(() => {
             e.target.style.animation = 'none';
             e.target.style.animation = '';

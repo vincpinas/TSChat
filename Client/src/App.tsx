@@ -6,7 +6,7 @@ import './App.css'
 import Join from './Components/Join/Join';
 import Chat from './Components/Chat/Chat';
 
-function App() {
+const App = () => {
   return (
     <Router>
         <Route path="/" exact component={Join} />

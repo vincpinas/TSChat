@@ -9,7 +9,7 @@ interface alertProps {
     error?: boolean;
 }
 
-function Alert(props: alertProps) {
+const Alert = (props: alertProps) => {
     const [alertActive, setAlertActive] = useState(false);
 
     useEffect(() => {

@@ -7,7 +7,7 @@ import './Join.css'
 import RubberSpan from '../RubberSpan/RubberSpan'
 import Alert from '../Alert/Alert'
 
-function Join() {
+const Join = () => {
     // Input Variables
     const [name, setName] = useState('');
 
