@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-interface headerProps {
-    sidebarData: object;
-}
+import './Sidebar.css'
 
-function Sidebar(props: headerProps) {
+import SidebarChannel from './SidebarChannel'
+
+function Sidebar() {
     return (
         <div className="sidebar">
-            
+            <SidebarChannel channelName="General" channelLink="#"/>
         </div>
     )
 }

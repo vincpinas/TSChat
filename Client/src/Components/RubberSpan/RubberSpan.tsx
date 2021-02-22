@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+
 import './RubberSpan.css'
 
-interface RubberSpanProps {
+interface rubberSpanProps {
     letters: string;
     margin?: number;
     hero?: boolean;
@@ -9,7 +10,7 @@ interface RubberSpanProps {
 }
 
 
-function RubberSpan(props: RubberSpanProps) {
+function RubberSpan(props: rubberSpanProps) {
     let letterArray: string[] = [];
 
     let split = props.letters.split("");

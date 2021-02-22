@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import * as FaIcons from 'react-icons/fa';
+import { Link } from 'react-router-dom'
 
 import './Join.css'
 
 import RubberSpan from '../RubberSpan/RubberSpan'
 import Alert from '../Alert/Alert'
-import * as FaIcons from 'react-icons/fa'
 
 function Join() {
     // Input Variables
@@ -37,7 +37,7 @@ function Join() {
                 </div>
             </div>
 
-            <Link onClick={event => (!name || name.length < 4) ? (event.preventDefault(), nameErrorSetter()) : null} to={`/chat?name=${name}`}>
+            <Link onClick={event => (!name || name.length < 4) ? (event.preventDefault(), nameErrorSetter()) : null} to={`/chat?name=${name}&room=general`}>
                 <button className="joinButton margetop-20" type="submit">Click to Join</button>
             </Link>
             <div className="Footer">
