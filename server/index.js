@@ -27,6 +27,8 @@ io.on('connection', (socket) => {
 
         if(error) return callback(error)
 
+        console.log(user)
+
         socket.emit('message', { user: 'admin', text: `Welcome to ${user.room}, ${user.name}.` });
         socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined the fray!` });
 
@@ -42,6 +44,10 @@ io.on('connection', (socket) => {
 
         callback();
     });
+
+    socket.on('disconnectUser', () => {
+        removeUser(socket.id)
+    })
 });
 
 app.use(router);
