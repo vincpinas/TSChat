@@ -1,0 +1,13 @@
+.messagesContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.messageContainer {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.messageText {
+    color: gray;
+}
