@@ -17,9 +17,9 @@ const Join = () => {
 
     // Error Conditionals
     const [nameError, setNameError] = useState(false);
-    const nameErrorSetter = () => {
-        setNameError(true)
-        setTimeout(() => setNameError(false), 8500)
+    const ErrorSetter = (setError: any) => {
+        setError(true)
+        setTimeout(() => setError(false), 8500)
     }
 
     return (
@@ -37,7 +37,7 @@ const Join = () => {
                 </div>
             </div>
 
-            <Link onClick={event => (!name || name.length < 4) ? (event.preventDefault(), nameErrorSetter()) : null} to={`/chat?name=${name}&room=general`}>
+            <Link onClick={event => (!name || name.length < 4) ? (event.preventDefault(), ErrorSetter(setNameError)) : null} to={`/chat?name=${name}&room=general`}>
                 <button className="joinButton margetop-20" type="submit">Click to Join</button>
             </Link>
             <div className="Footer">

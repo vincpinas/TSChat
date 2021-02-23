@@ -1,0 +1,20 @@
+.messageBar {
+    padding: 15px 50px;
+    border-radius: 5px 0px 0px 0px;
+    outline: none;
+    border: none;
+    background-color: #262626;
+    color: gray;
+    width: 100%;
+}
+
+.sendButton {
+    padding:  0px 20px;
+    font-size: 1em;
+    height: 100%;
+    border: none;
+    outline: none;
+    color: rgb(169, 169, 169);
+    background-color: #444444;
+    border-radius: 0px 5px 0px 0px;
+}

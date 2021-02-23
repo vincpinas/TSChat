@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 interface sidebarChannelProps {
     channelName: string;
     channelLink: string;
+    currentRoom?: string;
 }
 
 const SidebarChannel = (props: sidebarChannelProps) => {
