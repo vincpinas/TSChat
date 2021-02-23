@@ -18,6 +18,8 @@ const Chat = ({ location }: any) => {
     useEffect(() => {
         const { name, room } = queryString.parse(location.search);
 
+        setMessages([]);
+
         socket = io(ENDPOINT);
 
         socket.emit('join', { name, room }, () => {
@@ -38,7 +40,7 @@ const Chat = ({ location }: any) => {
         });
 
         // Rerendering a big array in React.js everytime is a big no no, so this is a temp fix.
-        if (messages.length > 7) {
+        if (messages.length > 5) {
             messages.shift();
         }
     }, [messages]);
