@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
 
         console.log(user)
 
-        socket.emit('message', { user: 'admin', text: `Welcome to ${user.room}, ${user.name}.` });
+        socket.emit('message', { user: 'Chat Bot', text: `Welcome to ${user.room}, ${user.name}.` });
         socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined the fray!` });
 
         socket.join(user.room);
