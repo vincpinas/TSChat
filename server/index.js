@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
         console.log(user)
 
         socket.emit('message', { user: 'Chat Bot', text: `Welcome to ${user.room}, ${user.name}.` });
-        socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined the fray!` });
+        socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} has joined the fray!` });
 
         socket.join(user.room);
 
@@ -41,6 +41,10 @@ io.on('connection', (socket) => {
         const user = getUser(socket.id);
 
         io.to(user.room).emit('message', { user: user.name, text: message });
+
+        if(message === '?help') {
+            io.to(user.room).emit('message', { user: 'Chat Bot', text: `Here is a list of commands to help you.`})
+        }
 
         callback();
     });
