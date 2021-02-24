@@ -51,6 +51,9 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnectUser', () => {
+        const user = getUser(socket.id);
+
+        socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} left the channel :(` });
         removeUser(socket.id)
     })
 });
