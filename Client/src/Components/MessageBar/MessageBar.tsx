@@ -10,7 +10,7 @@ interface MessageBarProps {
 
 const MessageBar = ({ message, setMessage, sendMessage}: MessageBarProps) => {
     return (
-        <form>
+        <form className="messageBarContainer"> 
             <input 
                 className="messageBar"
                 type="text"

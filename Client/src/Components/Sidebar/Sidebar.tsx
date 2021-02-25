@@ -1,26 +1,20 @@
-import React, { useEffect, useState} from 'react';
-import queryString from 'query-string';
+import React from 'react';
 
 import './Sidebar.css'
 
 import SidebarChannel from './SidebarChannel'
 
-const Sidebar = () => {
-    const [userName, setUserName] = useState<any | null>('');
+interface sidebarProps {
+    name?: string;
+}
 
-    useEffect(() => {
-        const { name } = queryString.parse(window.location.search);
-
-        setUserName(name);
-
-    }, []);
-
+const Sidebar = ({ name }: sidebarProps) => {
     return (
         <div className="sidebar">
-            <SidebarChannel channelName="General" channelLink={`/chat?name=${userName}&room=general`}/>
-            <SidebarChannel channelName="TypeScript" channelLink={`/chat?name=${userName}&room=typescript`}/>
-            <SidebarChannel channelName="JavaScript" channelLink={`/chat?name=${userName}&room=javascript`}/>
-            <SidebarChannel channelName="React" channelLink={`/chat?name=${userName}&room=react`}/>
+            <SidebarChannel channelName="General" channelLink={`/chat?name=${name}&room=general`}/>
+            <SidebarChannel channelName="TypeScript" channelLink={`/chat?name=${name}&room=typescript`}/>
+            <SidebarChannel channelName="JavaScript" channelLink={`/chat?name=${name}&room=javascript`}/>
+            <SidebarChannel channelName="React" channelLink={`/chat?name=${name}&room=react`}/>
         </div>
     )
 }
