@@ -55,6 +55,14 @@ const Chat = ({ location }: any) => {
         }
     }
 
+    // before unloading the page execute this code
+    const closingHandler = () => {
+        socket.emit('disconnectUser');
+        socket.off();
+    }
+
+    window.onbeforeunload = closingHandler;
+
     return (
         <div className="c-chat">
             <Sidebar name={name}/>
