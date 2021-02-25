@@ -11,8 +11,9 @@ import Messages from '../Messages/Messages'
 let socket: any;
 
 const Chat = ({ location }: any) => {
-    const [message, setMessage] = useState<any | null>('');
-    const [messages, setMessages] = useState<any | null>([]);
+    const [name, setName] = useState<string | any>('')
+    const [message, setMessage] = useState<string | any>('');
+    const [messages, setMessages] = useState<string[] | any>([]);
     const ENDPOINT = 'localhost:5000';
 
     useEffect(() => {
@@ -26,6 +27,8 @@ const Chat = ({ location }: any) => {
 
         });
 
+        setName(name);
+
         // Use Effect cleanup for disconnecting.
         return () => {
             socket.emit('disconnectUser')
@@ -35,13 +38,11 @@ const Chat = ({ location }: any) => {
 
     // When the messages array changes set all the new messages
     useEffect(() => {
-        socket.on('message', (message: string) => {
-            setMessages([...messages, message])
-        });
+        const handler = (message: string) => setMessages((messages: string[]) => [...messages, message])
+        socket.on('message', handler)
 
-        // Rerendering a big array in React.js everytime is a big no no, so this is a temp fix.
-        if (messages.length > 5) {
-            messages.shift();
+        return () => {
+            socket.off('message', handler)
         }
     }, [messages]);
 
@@ -56,7 +57,7 @@ const Chat = ({ location }: any) => {
 
     return (
         <div className="c-chat">
-            <Sidebar/>
+            <Sidebar name={name}/>
             <div className="chatContainer">
                 <Messages messages={messages}/>
                 <MessageBar message={message} setMessage={setMessage} sendMessage={sendMessage}/>
