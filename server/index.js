@@ -35,6 +35,7 @@ io.on('connection', (socket) => {
 
         socket.join(user.room);
 
+
         callback();
     });
 
@@ -43,8 +44,10 @@ io.on('connection', (socket) => {
 
         io.to(user.room).emit('message', { user: user.name, text: message });
 
-        if(message === '?help') {
-            io.to(user.room).emit('message', { user: 'Chat Bot', text: `Here is a list of commands to help you.`})
+        if(message === '?infoPrivate') {
+            io.to(user.id).emit('message', { user: 'Chat Bot', text: `Socket: { ${user.id} } Room: { ${user.room} } Name: { ${user.name} }`})
+        } else if (message === '?infoPublic') {
+            io.to(user.room).emit('message', { user: 'Chat Bot', text: `Socket: { ${user.id} } Room: { ${user.room} } Name: { ${user.name} }`})
         }
 
         callback();
