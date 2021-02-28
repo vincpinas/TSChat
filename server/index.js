@@ -4,6 +4,7 @@ const http = require('http');
 const cors = require('cors')
 
 const { addUser, removeUser, getUser, getUserInRoom } = require('./users');
+const { infoCheck } = require('./bot');
 
 // If no production PORT is available it tries to run on PORT 5000 for development.
 const PORT = process.env.PORT || 5000;
@@ -26,7 +27,7 @@ io.on('connection', (socket) => {
     socket.on('join', ({ name, room }, callback) => {
         const { error, user } = addUser({ id: socket.id, name, room});
 
-        if(error) return callback(error)
+        if(error) return socket.emit('error', error)
 
         console.log(user)
 
@@ -34,7 +35,6 @@ io.on('connection', (socket) => {
         socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} has joined the fray!` });
 
         socket.join(user.room);
-
 
         callback();
     });
@@ -44,11 +44,7 @@ io.on('connection', (socket) => {
 
         io.to(user.room).emit('message', { user: user.name, text: message });
 
-        if(message === '?infoPrivate') {
-            io.to(user.id).emit('message', { user: 'Chat Bot', text: `Socket: { ${user.id} } Room: { ${user.room} } Name: { ${user.name} }`})
-        } else if (message === '?infoPublic') {
-            io.to(user.room).emit('message', { user: 'Chat Bot', text: `Socket: { ${user.id} } Room: { ${user.room} } Name: { ${user.name} }`})
-        }
+        infoCheck(io, message, user);
 
         callback();
     });
