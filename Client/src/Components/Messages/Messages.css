@@ -4,8 +4,9 @@
 }
 
 .messageContainer {
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 5px 0px 0px 20px;
+    margin-top: 15px;
+    max-width: 60%;
 }
 
 .messageText {

@@ -4,8 +4,8 @@ import './MessageBar.css'
 
 interface MessageBarProps {
     message: string;
-    setMessage: any;
-    sendMessage: any;
+    setMessage(value: string): any;
+    sendMessage(event: any): any;
 }
 
 const MessageBar = ({ message, setMessage, sendMessage}: MessageBarProps) => {

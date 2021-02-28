@@ -16,6 +16,17 @@
     color: rgb(216, 216, 216);
 }
 
+::-webkit-scrollbar {
+    background-color: #1a1a1a;
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(187, 187, 187);
+
+}
+
 a {
     text-decoration: none;
     color: rgb(216, 216, 216);

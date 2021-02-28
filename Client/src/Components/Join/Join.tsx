@@ -19,7 +19,11 @@ const Join = () => {
     const [nameError, setNameError] = useState(false);
     const ErrorSetter = (setError: any) => {
         setError(true)
-        setTimeout(() => setError(false), 8500)
+        const timer = setTimeout(() => setError(false), 8500)
+
+        return () => {
+            clearTimeout(timer)
+        }
     }
 
     return (

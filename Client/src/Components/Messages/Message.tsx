@@ -7,9 +7,14 @@ interface messageProps {
     }
 }
 
+const noUserStyles = {
+    marginTop: "0px"
+}
+
 const Message = ({ message }: messageProps) => {
+    console.log(message)
     return (
-        <div className="messageContainer">
+        <div className="messageContainer" style={message.user === undefined ? noUserStyles : {}}>
             <p className="messageSender">{message.user}</p>
             <div className="messageBox">
                 <p className="messageText">{message.text}</p>
