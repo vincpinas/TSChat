@@ -4,7 +4,7 @@ const http = require('http');
 const cors = require('cors')
 
 const { addUser, removeUser, getUser, getUserInRoom } = require('./users');
-const { infoCheck } = require('./bot');
+const { infoCheck, swearCheck } = require('./bot');
 
 // If no production PORT is available it tries to run on PORT 5000 for development.
 const PORT = process.env.PORT || 5000;
@@ -45,6 +45,7 @@ io.on('connection', (socket) => {
         io.to(user.room).emit('message', { user: user.name, text: message });
 
         infoCheck(io, message, user);
+        swearCheck(socket, io, message, user);
 
         callback();
     });
@@ -52,7 +53,12 @@ io.on('connection', (socket) => {
     socket.on('disconnectUser', () => {
         const user = getUser(socket.id);
 
-        socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} left the channel :(` });
+        try {
+            socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} left the channel :(` });
+        } catch {
+            return null
+        }
+
         removeUser(socket.id)
     })
 });
