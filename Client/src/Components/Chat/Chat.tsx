@@ -10,7 +10,7 @@ import Messages from '../Messages/Messages'
 
 let socket: any;
 
-const Chat = ({ location }: any) => {
+const Chat = ({ location, history }: any) => {
     const [name, setName] = useState<string | any>('')
     const [message, setMessage] = useState<string | any>('');
     const [messages, setMessages] = useState<string[] | any>([]);
@@ -18,9 +18,7 @@ const Chat = ({ location }: any) => {
 
     useEffect(() => {
         const { name, room } = queryString.parse(location.search);
-
         setMessages([]);
-
         socket = io(ENDPOINT);
 
         socket.emit('join', { name, room }, () => {
@@ -29,7 +27,7 @@ const Chat = ({ location }: any) => {
 
         socket.on('error', (error: string) => {
             alert(error)
-        })
+        });
 
         setName(name);
 
@@ -40,15 +38,21 @@ const Chat = ({ location }: any) => {
         }
     }, [ENDPOINT, location.search]);
 
-    // When the messages array changes set all the new messages
+    // When the messages array changes set all the new messages & some extra stuff
     useEffect(() => {
+        // Message Handler
         const handler = (message: string) => setMessages((messages: string[]) => [...messages, message])
         socket.on('message', handler)
 
+        // Kick handler.
+        const kickHandler = () => history.push('/')
+        socket.on('kickUser', kickHandler)
+
         return () => {
             socket.off('message', handler)
+            socket.off('kickUser', handler)
         }
-    }, [messages]);
+    }, [messages, history]);
 
     // Send message function
     const sendMessage = (event: any) => {
