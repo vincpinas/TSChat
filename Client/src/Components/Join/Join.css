@@ -7,14 +7,10 @@
     align-items: center;
   }
   
-  .joinInnerContainer {
-    width: 20%;
-  }
-  
   .joinInput {
     border-radius: 8px;
     padding: 15px 20px;
-    width: 100%;
+    width: 15rem;
     background-color: rgb(21, 21, 21);
     outline: none;
     border: none;
@@ -39,7 +35,6 @@
       border-radius: 5px;
       display: inline-block;
       border: none;
-      width: 100%;
       color: rgb(204, 204, 204);
       background-color: rgb(21, 21, 21);
       border: 2px solid rgb(24, 24, 24);
@@ -117,10 +112,6 @@
 @media (min-width: 320px) and (max-width: 550px) {
   .joinOuterContainer {
     margin-top: 2rem;
-    height: 100%;
-  }
-
-  .joinInnerContainer {
-    width: 90%;
+    height: 100vh;
   }
 }

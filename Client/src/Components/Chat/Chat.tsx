@@ -27,6 +27,7 @@ const Chat = ({ location, history }: any) => {
 
         socket.on('error', (error: string) => {
             alert(error)
+            history.push('/')
         });
 
         setName(name);
@@ -36,7 +37,7 @@ const Chat = ({ location, history }: any) => {
             socket.emit('disconnectUser')
             socket.off();
         }
-    }, [ENDPOINT, location.search]);
+    }, [ENDPOINT, location.search, history]);
 
     // When the messages array changes set all the new messages & some extra stuff
     useEffect(() => {

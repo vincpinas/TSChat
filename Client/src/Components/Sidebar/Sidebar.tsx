@@ -11,6 +11,7 @@ interface sidebarProps {
 const Sidebar = ({ name }: sidebarProps) => {
     return (
         <div className="sidebar">
+            <SidebarChannel channelName="Rules" channelLink={`/chat?name=${name}&room=rules`}/>
             <SidebarChannel channelName="General" channelLink={`/chat?name=${name}&room=general`}/>
             <SidebarChannel channelName="TypeScript" channelLink={`/chat?name=${name}&room=typescript`}/>
             <SidebarChannel channelName="JavaScript" channelLink={`/chat?name=${name}&room=javascript`}/>
