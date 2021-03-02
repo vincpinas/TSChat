@@ -4,7 +4,7 @@ const http = require('http');
 const cors = require('cors')
 
 const { addUser, removeUser, getUser, getUserInRoom } = require('./users');
-const { infoCheck, swearCheck } = require('./bot');
+const { infoCheck, swearCheck, rulesIntroduction } = require('./bot');
 
 // If no production PORT is available it tries to run on PORT 5000 for development.
 const PORT = process.env.PORT || 5000;
@@ -27,12 +27,16 @@ io.on('connection', (socket) => {
     socket.on('join', ({ name, room }, callback) => {
         const { error, user } = addUser({ id: socket.id, name, room});
 
-        if(error) return socket.emit('error', error)
+        if(error) return socket.emit('error', error);
 
-        console.log(user)
+        console.log(user);
 
-        socket.emit('message', { user: 'Chat Bot', text: `Welcome to ${user.room}, ${user.name}.` });
-        socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} has joined the fray!` });
+        if(user.room === 'rules') {
+            rulesIntroduction(socket, user);
+        } else {
+            socket.emit('message', { user: 'Chat Bot', text: `Welcome to ${user.room}, ${user.name}.` });
+            socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} has joined the fray!` });
+        }
 
         socket.join(user.room);
 
@@ -59,8 +63,8 @@ io.on('connection', (socket) => {
             return null
         }
 
-        removeUser(socket.id)
-    })
+        removeUser(socket.id);
+    });
 });
 
 app.use(router);
