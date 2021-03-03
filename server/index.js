@@ -4,7 +4,7 @@ const http = require('http');
 const cors = require('cors')
 
 const { addUser, removeUser, getUser, getUserInRoom } = require('./users');
-const { infoCheck, swearCheck, rulesIntroduction } = require('./bot');
+const { infoCheck, swearCheck, rulesIntroduction, welcomeMessage, disconnectMessage } = require('./bot');
 
 // If no production PORT is available it tries to run on PORT 5000 for development.
 const PORT = process.env.PORT || 5000;
@@ -25,17 +25,17 @@ const io = socketio(server, {
 // Socket.io Event Handlers.
 io.on('connection', (socket) => {
     socket.on('join', ({ name, room }, callback) => {
-        const { error, user } = addUser({ id: socket.id, name, room});
+        const { error, user } = addUser({ id: socket.id, name, room, role: "default"});
 
         if(error) return socket.emit('error', error);
 
         console.log(user);
 
         if(user.room === 'rules') {
-            rulesIntroduction(socket, user);
+            welcomeMessage(socket, user);
+            rulesIntroduction(socket);
         } else {
-            socket.emit('message', { user: 'Chat Bot', text: `Welcome to ${user.room}, ${user.name}.` });
-            socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} has joined the fray!` });
+            welcomeMessage(socket, user);
         }
 
         socket.join(user.room);
@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
     socket.on('sendMessage', (message, callback) => {
         const user = getUser(socket.id);
 
-        io.to(user.room).emit('message', { user: user.name, text: message });
+        io.to(user.room).emit('message', { user: user.name, text: message, role: user.role });
 
         infoCheck(io, message, user);
         swearCheck(socket, io, message, user);
@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
         const user = getUser(socket.id);
 
         try {
-            socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} left the channel :(` });
+            disconnectMessage(socket, user)
         } catch {
             return null
         }
