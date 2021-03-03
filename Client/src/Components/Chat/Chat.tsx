@@ -72,7 +72,7 @@ const Chat = ({ location, history }: any) => {
     
     return (
         <div className="c-chat">
-            <Sidebar name={name}/>
+            <Sidebar name={name} history={history}/>
             <div className="chatContainer">
                 <Messages messages={messages}/>
                 <MessageBar message={message} setMessage={setMessage} sendMessage={sendMessage}/>

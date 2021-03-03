@@ -30,3 +30,55 @@
 .channelName {
     font-size: 0.95em;
 }
+
+.SidebarFooter {
+    margin: 10px 15px 0px 15px;
+    border-top: solid 2px gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.sfItem {
+    margin-top: 1rem;
+}
+
+.sfImage {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    margin-right: 0.5rem;
+}
+
+.sfUser {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75em;
+}
+
+.sfInfo span {
+    font-size: 14px;
+}
+
+.sfInfo p {
+    color: gray;
+    font-size: 12px;
+}
+
+.sfButton {
+    font-size: 15px;
+    padding: 7px;
+    outline: none;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    color: gray;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.sfButton:hover {
+    background-color: rgba(73, 73, 73, 0.315);
+}

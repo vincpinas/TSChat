@@ -29,8 +29,6 @@ const Message = ({ message }: messageProps) => {
         }, 100)
     }
 
-    console.log(message)
-
     return (
         <div className="messageContainer" style={message.user === undefined ? noUserStyles : {}}>
             <p className={message.role ? `messageSender ${message.role}` : "messageSender"}>{message.user}</p>
