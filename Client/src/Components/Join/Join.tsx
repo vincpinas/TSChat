@@ -29,14 +29,14 @@ const Join = () => {
     return (
         <div className="joinOuterContainer">
             <div className="c-alert-container">
-                { nameError ? <Alert text="Please fill in a name of atleast 4 characters." timer={7500} delay={0} error={true} /> : null }
+                { nameError ? <Alert text="Please fill in a name between 4 - 9 characters." timer={7500} delay={0} error={true} /> : null }
             </div>
             <h1 className="heading">
                 <RubberSpan letters="TypeScript" hero={true} margin={10}/> 
                 <RubberSpan letters="Chat" hero={true}/> 
             </h1>
                 <input placeholder="Enter Name.." className="joinInput" type="text" onChange={(event) => setName(event.target.value)}/>
-            <Link onClick={event => (!name || name.length < 4) ? (event.preventDefault(), ErrorSetter(setNameError)) : null} to={`/chat?name=${name}&room=rules`}>
+            <Link onClick={event => (!name || name.length < 4 || name.length > 9) ? (event.preventDefault(), ErrorSetter(setNameError)) : null} to={`/chat?name=${name}&room=rules`}>
                 <button className="joinButton margetop-20" type="submit">Click to Join</button>
             </Link>
             <div className="Footer">

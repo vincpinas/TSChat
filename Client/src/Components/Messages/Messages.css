@@ -6,9 +6,19 @@
 .messageContainer {
     padding: 5px 0px 0px 20px;
     margin-top: 15px;
-    max-width: 60%;
+    width: fit-content;
 }
 
 .messageText {
     color: gray;
+    white-space: nowrap;
 }
+
+.admin {
+  color: orange;
+}
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
