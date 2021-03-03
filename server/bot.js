@@ -41,21 +41,30 @@ const calcDuration = (stringLength) => {
     return output
 }
 
-// General welcome message for each channel
-const welcomeMessage = (socket, user) => {
-    socket.emit('message', { user: 'Chat Bot', text: `Welcome to ${user.room}, ${user.name}.`, role: 'admin', typewriter: {typestate: true, duration: calcDuration(14 + user.room.length + user.name.length)}});
-    socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `${user.name} has joined the fray!`, role: 'admin', typewriter: {typestate: true, duration: calcDuration(26)}});
+const typeWriterText = (socket, typetext) => {
+    return socket.emit(
+        'message',
+        {
+            user: 'Chat Bot',
+            text: typetext,
+            role: 'admin',
+            typewriter: { typestate: true, duration: calcDuration(typetext.length)}
+        }
+    );
 }
 
+// General welcome message for each channel
+const welcomeMessage = (socket, user) => {
+    typeWriterText(socket, `Welcome to ${user.room}, ${user.name}.`)
+    socket.broadcast.to(user.room).emit(
+        'message', { user: 'Chat Bot', text: `${user.name} has joined the fray!`, role: 'admin',typewriter: {typestate: true, duration: calcDuration(26)}}
+    );
+}
+
+// Disconnect Message with typewriter animation.
 const disconnectMessage = (socket, user) => {
     socket.broadcast.to(user.room).emit(
-        'message', 
-        { 
-        user: 'Chat Bot', 
-        text: `${user.name} left the channel :(`, 
-        role: 'admin',
-        typewriter: {typestate: true, duration: calcDuration(20 + user.name.length)}
-        }
+        'message', { user: 'Chat Bot', text: `${user.name} left the channel :(`, role: 'admin',typewriter: {typestate: true, duration: calcDuration(20 + user.name.length)}}
     );
 }
 
@@ -63,26 +72,21 @@ const disconnectMessage = (socket, user) => {
 const rulesIntroduction = (socket) => {
     // General Introduction
     setTimeout(() => {
-        socket.emit('message', { text: `As you may have seen, I'm the Chat Bot, my role is to enfore rules in this place.`});
-        socket.emit('message', { text: `Now, you may be wondering. What are these rules?`});
-        socket.emit('message', { text: `Well I'll tell ya, here is a simple list of the current rules.`});
+        socket.emit('message', { text: `Here is a simple list of rules to follow.`});
     }, 2000);
-
     // Rules list
     setTimeout(() => {
         socket.emit('message', { user: 'Chat Bot', text: `* Don't be racist.`, role: 'admin'});
         socket.emit('message', { text: `* Don't use inappropriate language.` });
         socket.emit('message', { text: `* If you come across a bug, report it.` });
     }, 4200);
-
     // Conclusion
     setTimeout(() => {
-        socket.emit('message', { user: 'Chat Bot', text: `Simple right?`, role: 'admin', typewriter: {typestate: true, duration: calcDuration(14)}});
+        typeWriterText(socket, `Simple right?`)
     }, 6500);
-
     // Exit sentence
     setTimeout(() => {
-        socket.emit('message', { user: 'Chat Bot', text: `Well, have fun!`, role: 'admin', typewriter: {typestate: true, duration: calcDuration(16)}});
+        typeWriterText(socket, `Well, have fun!`)
     }, 8500)
 }
 
