@@ -1,0 +1,110 @@
+.settingsModal {
+    z-index: 100;
+    width: 85%;
+    height: 100vh;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+}
+
+.settingsExit {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 18px;
+    padding: 7px;
+    outline: none;
+    background: none;
+    border: solid 2px rgba(68, 68, 68, 0.699);
+    border-radius: 5px;
+    color: gray;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.settingsExit:hover {
+    background-color: rgba(73, 73, 73, 0.315);
+}
+
+.settingsInnerContainer {
+    position: relative;
+    padding: 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sImageList {
+    background-color: rgb(22, 22, 22);
+    padding: 30px 20px;
+    border-radius: 10px;
+    display: inline-flex;
+}
+
+.sImageContainer {
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.sImage {
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    background-color: white;
+    transition: 0.2s;
+    position: relative;
+}
+
+.sImage:hover {
+    opacity: 0.4;
+}
+
+.tooltip {
+    background-color: #080808;
+    text-align: center;
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin-top: 1rem;
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.sImageContainer:hover .tooltip {
+    bottom: -25px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sImageContainer .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    background-color: #080808;
+    left: 50%;
+    top: -6px;
+    transform: translateX(-50%) rotate(45deg);
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.sImageContainer:hover .sImage,
+.sImageContainer:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
+}

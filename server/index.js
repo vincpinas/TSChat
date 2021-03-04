@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
 
         io.to(user.room).emit('message', { user: user.name, text: message, role: user.role });
 
-        infoCheck(io, message, user);
+        infoCheck(io, socket, message, user);
         swearCheck(socket, io, message, user);
 
         callback();

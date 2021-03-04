@@ -1,15 +1,17 @@
 .c-chat {
     display: flex;
+    position: relative;
 }
 
 .chatContainer {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 100vh;
+    height: calc(100vh - 3rem);
     position: absolute;
     right: 0;
     width: 85%;
+    background-color: #1a1a1a;
 }
 
 .chatContainer form {

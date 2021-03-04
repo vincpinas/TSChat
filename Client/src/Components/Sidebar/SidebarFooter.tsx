@@ -4,9 +4,12 @@ import * as BsIcons from 'react-icons/bs'
 interface sidebarFooterProps {
     name?: string;
     history?: any;
+    trigger?: boolean;
+    setTrigger?: any;
+    profilePic?: any;
 }
 
-function SidebarFooter({ name, history }: sidebarFooterProps) {
+function SidebarFooter({ name, trigger, setTrigger, profilePic, history }: sidebarFooterProps) {
     name = name?.toLowerCase();
 
     const [home, setHome] = useState(false);
@@ -19,24 +22,26 @@ function SidebarFooter({ name, history }: sidebarFooterProps) {
         }
     }, [home, history])
 
+    const triggerSetter = () => setTrigger(!trigger);
+
     return (
         <div className="SidebarFooter">
-        <div className="sfItem sfUser">
-            <div className="sfImage">
-
+            <div className="sfItem sfUser">
+                <div className="sfImage">
+                    <img src={profilePic} className="sfImage" alt="profile"/>
+                </div>
+                <div className="sfInfo">
+                    <span>{name}</span>
+                    <p>default</p>
+                </div>
             </div>
-            <div className="sfInfo">
-                <span>{name}</span>
-                <p>default</p>
-            </div>
+            <button className="sfItem sfButton" onClick={homeSetter}>
+                <BsIcons.BsHouseDoorFill/>
+            </button>
+            <button className="sfItem sfButton" onClick={triggerSetter}>
+                <BsIcons.BsGearFill/>
+            </button>
         </div>
-        <button className="sfItem sfButton" onClick={homeSetter}>
-            <BsIcons.BsHouseDoorFill/>
-        </button>
-        <button className="sfItem sfButton">
-            <BsIcons.BsGearFill/>
-        </button>
-    </div>
     )
 }
 

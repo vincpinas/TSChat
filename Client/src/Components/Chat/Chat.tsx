@@ -7,13 +7,18 @@ import './Chat.css'
 import Sidebar from '../Sidebar/Sidebar'
 import MessageBar from '../MessageBar/MessageBar'
 import Messages from '../Messages/Messages'
+import Settings from '../Settings/Settings'
+
+import profileImg04 from '../../Assets/ProfilePictures/profileImg04.gif'
 
 let socket: any;
 
 const Chat = ({ location, history }: any) => {
-    const [name, setName] = useState<string | any>('')
+    const [name, setName] = useState<string | any>('');
+    const [profilePic, setProfilePic] = useState(profileImg04)
     const [message, setMessage] = useState<string | any>('');
     const [messages, setMessages] = useState<string[] | any>([]);
+    const [settings, setSettings] = useState(false);
     const ENDPOINT = 'localhost:5000';
 
     useEffect(() => {
@@ -72,7 +77,8 @@ const Chat = ({ location, history }: any) => {
     
     return (
         <div className="c-chat">
-            <Sidebar name={name} history={history}/>
+            <Sidebar name={name} history={history} trigger={settings} setTrigger={setSettings} profilePic={profilePic}/>
+            <Settings trigger={settings} setTrigger={setSettings} setProfilePic={setProfilePic}/>
             <div className="chatContainer">
                 <Messages messages={messages}/>
                 <MessageBar message={message} setMessage={setMessage} sendMessage={sendMessage}/>

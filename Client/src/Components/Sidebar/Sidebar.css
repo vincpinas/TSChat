@@ -45,8 +45,8 @@
 
 .sfImage {
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 45px;
+    height: 45px;
     background-color: white;
     margin-right: 0.5rem;
 }
@@ -68,7 +68,7 @@
 }
 
 .sfButton {
-    font-size: 15px;
+    font-size: 18px;
     padding: 7px;
     outline: none;
     background: none;

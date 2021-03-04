@@ -9,15 +9,16 @@ const kickUser = (socket) => {
 }
 
 // All helper functions for the bot.
-const infoCheck = (io, message, user) => {
+const infoCheck = (io, socket, message, user) => {
     // Command to privately receive info on your socket.
     if(message.toLowerCase() === '?infoprivate') {
+        socket.broadcast.to(user.room).emit('message', { user: 'Chat Bot', text: `You don't have permission to see this information`, role: 'admin'})
         io.to(user.id).emit('message', { user: 'Chat Bot', text: `Only you can see this message.`, role: 'admin'});
-        io.to(user.id).emit('message', { text: `Socket: { ${user.id} } Room: { ${user.room} } Name: { ${user.name} }`});
+        io.to(user.id).emit('message', { text: `Socket: { ${user.id} } Room: { ${user.room} } Name: { ${user.name} } Role: { ${user.role} }`});
     // Public version.
     } else if (message.toLowerCase() === '?infopublic') {
         io.to(user.room).emit('message', { user: 'Chat Bot', text: `Everyone can see this message.`, role: 'admin'});
-        io.to(user.room).emit('message', { text: `Socket: { ${user.id} } Room: { ${user.room} } Name: { ${user.name} }`});
+        io.to(user.room).emit('message', { text: `Socket: { ${user.id} } Room: { ${user.room} } Name: { ${user.name} } Role: { ${user.role} }`});
     }
 }
 
@@ -56,6 +57,7 @@ const typeWriterText = (socket, typetext) => {
 // General welcome message for each channel
 const welcomeMessage = (socket, user) => {
     typeWriterText(socket, `Welcome to ${user.room}, ${user.name}.`)
+    setTimeout(() => socket.emit('message', { text: 'How has your day been?'}), 2000)
     socket.broadcast.to(user.room).emit(
         'message', { user: 'Chat Bot', text: `${user.name} has joined the fray!`, role: 'admin',typewriter: {typestate: true, duration: calcDuration(26)}}
     );
