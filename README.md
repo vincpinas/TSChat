@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="client/src/Assets/ProfilePictures/ProfileImg04.gif" width="150"  alt="DogeHouse logo" />
+  <img src="https://i.imgur.com/6vi9d6U.gif" width="380"  alt="TSChat README Cover" />
 </p>
 <h2 align="center" style="font-size:27.5px" font><b>TSChat: Simple TypeScript/React Chat App</b></h2>
 
