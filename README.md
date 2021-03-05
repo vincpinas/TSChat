@@ -38,13 +38,13 @@ TSChat is open for contributons, but it would be preffered if you make an issue 
 
 #### **The following is a list of emoji's used for commits and their meaning**
 ***important!***  if multiple emoji's apply, use the most relevant one.
-| Emoji | Syntax           | Description                           |
-| :---- | :-----           | :---------                            |
-| 💙    | :blue_heart:     | Added a new a lot of code             |
-| 🔥    | :fire:           | Deleted or cleaned up a bunch of code |
-| 🎨    | :art:            | Changed or added styling              | 
-| 🔎    | :mag_right:      | Added a link                          |
-| 📝    | :memo:           | Added documentation or comments       |
+| Emoji | Syntax         | Description                           |
+| :---- | :-----         | :---------                            |
+| 💙    | `:blue_heart:` | Added a new a lot of code             |
+| 🔥    | `:fire:`       | Deleted or cleaned up a bunch of code |
+| 🎨    | `:art:`        | Changed or added styling              | 
+| 🔎    | `:mag_right:`  | Added a link                          |
+| 📝    | `:memo:`       | Added documentation or comments       |
 
 ---
 # Q & A
