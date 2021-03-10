@@ -7,13 +7,15 @@ interface sidebarFooterProps {
     trigger?: boolean;
     setTrigger?: any;
     profilePic?: any;
+    socket?: any;
 }
 
-function SidebarFooter({ name, trigger, setTrigger, profilePic, history }: sidebarFooterProps) {
+function SidebarFooter({ name, trigger, setTrigger, profilePic, socket, history }: sidebarFooterProps) {
     name = name?.toLowerCase();
 
     const [home, setHome] = useState(false);
     const homeSetter = () => setHome(true);
+    const [userRole, setUserRole] = useState('');
 
     useEffect(() => {
         if(home) {
@@ -24,6 +26,12 @@ function SidebarFooter({ name, trigger, setTrigger, profilePic, history }: sideb
 
     const triggerSetter = () => setTrigger(!trigger);
 
+    useEffect(() => {
+        if (socket === undefined) return
+        const roleHandler = (role: string) => setUserRole(role)
+        socket.on('setRole', roleHandler)
+    }, [socket]);
+
     return (
         <div className="SidebarFooter">
             <div className="sfItem sfUser">
@@ -32,7 +40,7 @@ function SidebarFooter({ name, trigger, setTrigger, profilePic, history }: sideb
                 </div>
                 <div className="sfInfo">
                     <span>{name}</span>
-                    <p>default</p>
+                    <p>{userRole}</p>
                 </div>
             </div>
             <button className="sfItem sfButton" onClick={homeSetter}>

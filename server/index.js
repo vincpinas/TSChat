@@ -25,11 +25,12 @@ const io = socketio(server, {
 // Socket.io Event Handlers.
 io.on('connection', (socket) => {
     socket.on('join', ({ name, room }, callback) => {
-        const { error, user } = addUser({ id: socket.id, name, room, role: "default"});
+        const { error, user } = addUser({ id: socket.id, name, room, role: "Default"});
 
         if(error) return socket.emit('error', error);
 
         console.log(user);
+        io.to(user.id).emit('setRole', user.role)
 
         if(user.room === 'rules') {
             welcomeMessage(socket, user);

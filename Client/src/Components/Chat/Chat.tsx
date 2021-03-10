@@ -77,7 +77,7 @@ const Chat = ({ location, history }: any) => {
     
     return (
         <div className="c-chat">
-            <Sidebar name={name} history={history} trigger={settings} setTrigger={setSettings} profilePic={profilePic}/>
+            <Sidebar name={name} history={history} trigger={settings} setTrigger={setSettings} profilePic={profilePic} socket={socket}/>
             <Settings trigger={settings} setTrigger={setSettings} setProfilePic={setProfilePic}/>
             <div className="chatContainer">
                 <Messages messages={messages}/>
